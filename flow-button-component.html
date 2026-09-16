@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlowButton - Componente de Botão CTA</title>
+
+<!--
+  ===========================================================================
+  FLOWBUTTON - Botao de CTA reutilizavel
+  ===========================================================================
+  Como usar em outro site:
+
+  1. Copie todo o bloco <style> abaixo para o CSS do seu projeto (ou mantenha
+     em um arquivo separado, ex.: flow-button.css).
+  2. Copie o HTML de um dos 3 exemplos (dark / light / gradient) e troque o
+     texto do link/botao e o href.
+  3. Nao precisa de nenhum JavaScript - o efeito e 100% CSS.
+
+  Estrutura do HTML (sempre a mesma, so muda a classe de variante):
+
+    <a href="#" class="flow-btn flow-gradient btn-ripple">
+      <svg class="flow-arrow arrow-left" ...>seta</svg>
+      <span class="flow-text">Texto do botao</span>
+      <span class="flow-circle" aria-hidden="true"></span>
+      <svg class="flow-arrow arrow-right" ...>seta</svg>
+    </a>
+
+  Variantes (troque a classe flow-dark / flow-light / flow-gradient):
+    - flow-dark:     fundo transparente, borda escura, texto escuro
+                      (usar sobre fundos claros)
+    - flow-light:    fundo transparente, borda clara, texto branco
+                      (usar sobre fundos escuros/coloridos)
+    - flow-gradient: preenchido com gradiente de marca (o mais usado como
+                      CTA principal)
+
+  A classe "btn-ripple" e opcional: adiciona um leve efeito de brilho radial
+  e um "levantar" (translateY) no hover, por cima da animacao do flow-btn.
+  Pode remover se quiser so o efeito de seta + preenchimento circular.
+
+  Para adaptar as cores do gradiente e do foco a marca do outro site, edite
+  as variaveis indicadas nos comentarios dentro do <style>.
+  ===========================================================================
+-->
+
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0F1024;
+    padding: 4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  .demo-label { color: rgba(255,255,255,.5); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .75rem; text-align: center; }
+  .demo-row { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center; }
+  .demo-block { text-align: center; }
+  .light-bg { background: #fff; padding: 3rem 2rem; border-radius: 16px; }
+
+  /* =========================================================================
+     FLOWBUTTON - CSS do componente (copie tudo daqui ate o fim do bloco)
+  ========================================================================= */
+
+  /* Botao de CTA: preenchimento radial que expande do centro ao passar o mouse
+     (efeito opcional, combine com .flow-btn) */
+  .btn-ripple { position: relative; isolation: isolate; overflow: hidden; }
+  .btn-ripple::before {
+    content: ""; position: absolute; top: 50%; left: 50%; z-index: -1;
+    width: 100%; padding-bottom: 100%; border-radius: 9999px;
+    background: radial-gradient(circle, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 70%);
+    transform: translate(-50%,-50%) scale(0);
+    transition: transform .6s cubic-bezier(.25,1,.5,1);
+  }
+  .btn-ripple:hover::before { transform: translate(-50%,-50%) scale(2.5); }
+  .btn-ripple:hover { transform: translateY(-3px); }
+  .btn-ripple:active { transform: translateY(1px); }
+
+  /* FlowButton: seta desliza para dentro + circulo preenche o fundo no hover */
+  .flow-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .25rem;
+    padding: 1rem 2.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 100px;
+    transition: all .6s cubic-bezier(.23,1,.32,1);
+    isolation: isolate;
+    transform: translateZ(0); /* evita artefatos de recorte no canto arredondado */
+  }
+  .flow-btn:hover { border-radius: 12px; }
+  .flow-btn:active { transform: scale(.96); }
+
+  .flow-btn .flow-arrow {
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    z-index: 9;
+    transition: all .8s cubic-bezier(.34,1.56,.64,1);
+  }
+  .flow-btn .flow-arrow.arrow-left { left: -25%; }
+  .flow-btn:hover .flow-arrow.arrow-left { left: 1rem; }
+  .flow-btn .flow-arrow.arrow-right { right: 1rem; }
+  .flow-btn:hover .flow-arrow.arrow-right { right: -25%; }
+
+  .flow-btn .flow-text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-0.75rem);
+    transition: transform .8s ease-out;
+    white-space: nowrap;
+  }
+  .flow-btn:hover .flow-text { transform: translateX(0.75rem); }
+
+  .flow-btn .flow-circle {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1rem; height: 1rem;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all .8s cubic-bezier(.19,1,.22,1);
+  }
+  .flow-btn:hover .flow-circle { width: 480px; height: 480px; opacity: 1; }
+
+  /* Variante escura: usar sobre fundos claros */
+  .flow-btn.flow-dark { border: 1.5px solid rgba(51,51,51,.4); color: #111111; }
+  .flow-btn.flow-dark:hover { border-color: transparent; color: #fff; }
+  .flow-btn.flow-dark .flow-arrow { stroke: #111111; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .flow-btn.flow-dark:hover .flow-arrow { stroke: #fff; }
+  .flow-btn.flow-dark .flow-circle { background: #111111; }
+
+  /* Variante clara: usar sobre fundos escuros ou coloridos */
+  .flow-btn.flow-light { border: 1.5px solid rgba(255,255,255,.4); color: #fff; }
+  .flow-btn.flow-light:hover { border-color: transparent; color: #1A0448; }
+  .flow-btn.flow-light .flow-arrow { stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .flow-btn.flow-light:hover .flow-arrow { stroke: #1A0448; }
+  .flow-btn.flow-light .flow-circle { background: #fff; }
+
+  /* Variante gradiente: o CTA principal, ja preenchido com a cor da marca.
+     Troque os tons do linear-gradient e do box-shadow pelas cores do seu site. */
+  .flow-btn.flow-gradient {
+    border: none;
+    color: #fff;
+    background-image: linear-gradient(90deg, #5B14A8 0%, #8B1FE0 55%, #C77DFF 100%);
+    /* O anel de 1px acompanha o border-radius e cobre a linha clara de
+       anti-aliasing que o Chrome/Windows deixa visivel no canto arredondado
+       em telas com escala fracionaria (125%/150%). Ajuste a cor do anel
+       (#7B2FE0) para um tom no meio do seu gradiente. */
+    box-shadow: 0 0 0 1px #7B2FE0, 0 10px 25px -6px rgba(139,31,224,.5);
+  }
+  .flow-btn.flow-gradient:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -6px rgba(139,31,224,.65); }
+  .flow-btn.flow-gradient .flow-arrow { stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ========================================================================= */
+</style>
+</head>
+<body>
+
+<div class="demo-block">
+  <p class="demo-label">flow-gradient (CTA principal)</p>
+  <div class="demo-row">
+    <a href="#" class="flow-btn flow-gradient btn-ripple">
+      <svg class="flow-arrow arrow-left" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      <span class="flow-text">Quero começar agora</span>
+      <span class="flow-circle" aria-hidden="true"></span>
+      <svg class="flow-arrow arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </div>
+</div>
+
+<div class="demo-block">
+  <p class="demo-label">flow-light (sobre fundo escuro)</p>
+  <div class="demo-row">
+    <a href="#" class="flow-btn flow-light btn-ripple">
+      <svg class="flow-arrow arrow-left" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      <span class="flow-text">Falar no WhatsApp</span>
+      <span class="flow-circle" aria-hidden="true"></span>
+      <svg class="flow-arrow arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </div>
+</div>
+
+<div class="demo-block light-bg">
+  <p class="demo-label" style="color:#8891a3;">flow-dark (sobre fundo claro)</p>
+  <div class="demo-row">
+    <a href="#" class="flow-btn flow-dark btn-ripple">
+      <svg class="flow-arrow arrow-left" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      <span class="flow-text">Saiba mais</span>
+      <span class="flow-circle" aria-hidden="true"></span>
+      <svg class="flow-arrow arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
