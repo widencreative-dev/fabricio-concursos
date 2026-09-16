@@ -1,0 +1,111 @@
+/* Estilos compartilhados por todas as paginas do site (index.html e as
+   paginas de e-book). Carregado depois do Tailwind CDN. */
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
+::selection { background: rgba(139, 31, 224, 0.2); color: #1A0448; }
+:focus-visible { outline-offset: 2px; }
+
+/* Botoes de CTA: preenchimento radial que expande do centro ao passar o mouse */
+.btn-ripple { position: relative; isolation: isolate; overflow: hidden; }
+.btn-ripple::before {
+  content: ""; position: absolute; top: 50%; left: 50%; z-index: -1;
+  width: 100%; padding-bottom: 100%; border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 70%);
+  transform: translate(-50%,-50%) scale(0);
+  transition: transform .6s cubic-bezier(.25,1,.5,1);
+}
+.btn-ripple:hover::before { transform: translate(-50%,-50%) scale(2.5); }
+.btn-ripple:hover { transform: translateY(-3px); }
+.btn-ripple:active { transform: translateY(1px); }
+
+/* FlowButton: seta desliza + circulo preenche no hover */
+.flow-btn {
+  position: relative; overflow: hidden; border-radius: 100px;
+  transition: all .6s cubic-bezier(.23,1,.32,1);
+  isolation: isolate; transform: translateZ(0);
+}
+.flow-btn:hover { border-radius: 12px; }
+.flow-btn .flow-arrow { position: absolute; z-index: 9; transition: all .8s cubic-bezier(.34,1.56,.64,1); }
+.flow-btn .flow-arrow.arrow-left { left: -25%; }
+.flow-btn:hover .flow-arrow.arrow-left { left: 1rem; }
+.flow-btn .flow-arrow.arrow-right { right: 1rem; }
+.flow-btn:hover .flow-arrow.arrow-right { right: -25%; }
+.flow-btn .flow-text { position: relative; z-index: 1; transform: translateX(-0.75rem); transition: transform .8s ease-out; white-space: nowrap; }
+.flow-btn:hover .flow-text { transform: translateX(0.75rem); }
+.flow-btn .flow-circle {
+  position: absolute; top: 50%; left: 50%; width: 1rem; height: 1rem;
+  transform: translate(-50%,-50%); border-radius: 50%; opacity: 0;
+  transition: all .8s cubic-bezier(.19,1,.22,1);
+}
+.flow-btn:hover .flow-circle { width: 480px; height: 480px; opacity: 1; }
+.flow-btn.flow-dark { border: 1.5px solid rgba(51,51,51,.4); color: #111111; }
+.flow-btn.flow-dark:hover { border-color: transparent; color: #fff; }
+.flow-btn.flow-dark .flow-arrow { stroke: #111111; }
+.flow-btn.flow-dark:hover .flow-arrow { stroke: #fff; }
+.flow-btn.flow-dark .flow-circle { background: #111111; }
+.flow-btn.flow-light { border: 1.5px solid rgba(255,255,255,.4); color: #fff; }
+.flow-btn.flow-light:hover { border-color: transparent; color: #1A0448; }
+.flow-btn.flow-light .flow-arrow { stroke: #fff; }
+.flow-btn.flow-light:hover .flow-arrow { stroke: #1A0448; }
+.flow-btn.flow-light .flow-circle { background: #fff; }
+.flow-btn.flow-gradient {
+  border: none; color: #fff;
+  background-image: linear-gradient(90deg, #5B14A8 0%, #8B1FE0 55%, #C77DFF 100%);
+  /* O anel de 1px acompanha o border-radius e cobre a linha clara de anti-aliasing
+     que o Chrome/Windows deixa visivel no canto arredondado em telas com escala
+     fracionaria (125%/150%). */
+  box-shadow: 0 0 0 1px #7B2FE0, 0 10px 25px -6px rgba(139,31,224,.5);
+}
+.flow-btn.flow-gradient:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -6px rgba(139,31,224,.65); }
+.flow-btn.flow-gradient .flow-arrow { stroke: #fff; }
+.flow-btn:active { transform: scale(.96); }
+
+/* Texto em gradiente (mesmo gradiente dos CTAs) */
+.gradient-text {
+  background-image: linear-gradient(90deg, #5B14A8 0%, #8B1FE0 55%, #C77DFF 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Mural de depoimentos: fade nas bordas superior/inferior da parede de cartoes */
+.testi-wall {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+}
+
+/* Mural de depoimentos: colunas com rolagem vertical continua
+   (decorativo, sempre roda, como no mural de referencia) */
+@keyframes testiScroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+.testi-col { overflow: hidden; }
+.testi-track { animation: testiScroll linear infinite; will-change: transform; }
+.testi-col.reverse .testi-track { animation-direction: reverse; }
+.testi-col:hover .testi-track { animation-play-state: paused; }
+
+/* Selos flutuantes sobre a foto do hero (decorativo, sempre roda como a faixa de palavras-chave) */
+.hero-badge { animation-name: heroBadgeFloat; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+@keyframes heroBadgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+/* Faixa de frases: carrossel horizontal infinito e automatico (sempre roda) */
+.marquee-track { animation: marqueeScroll 48s linear infinite; }
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-band:hover .marquee-track { animation-play-state: paused; }
+
+/* Divisor entre secoes: seta que sobe e desce */
+@keyframes scrollCueBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+.scroll-cue { animation: scrollCueBounce 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Campos de formulario em vidro (glassmorphism), usados sobre fundos escuros */
+.ebook-input { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); color: #fff; }
+.ebook-input::placeholder { color: rgba(255,255,255,.4); }
+.ebook-input:focus { outline: none; border-color: #C77DFF; background: rgba(255,255,255,.08); }
+
+/* Grade de servicos: ao passar o mouse em um card, os demais desfocam (efeito de destaque) */
+.servicos-card { transition: filter 0.35s ease, opacity 0.35s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+#servicos-track.group-hovering .servicos-card:not(.is-hovered) { filter: blur(3px); opacity: 0.6; }
