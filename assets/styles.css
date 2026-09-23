@@ -71,6 +71,13 @@ body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
+/* Aba ativa do FAQ */
+.faq-tab-active {
+  border-color: #8B1FE0;
+  background-image: linear-gradient(90deg, #5B14A8 0%, #8B1FE0 55%, #C77DFF 100%);
+  color: #fff !important;
+}
+
 /* Mural de depoimentos: fade nas bordas superior/inferior da parede de cartoes */
 .testi-wall {
   -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
@@ -89,15 +96,19 @@ body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
 .hero-badge { animation-name: heroBadgeFloat; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
 @keyframes heroBadgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 
-/* Faixa de frases: carrossel horizontal infinito e automatico (sempre roda) */
-.marquee-track { animation: marqueeScroll 48s linear infinite; }
+/* Faixa de frases: carrossel horizontal infinito e automatico (sempre roda, nao pausa no hover) */
+.marquee-track { animation: marqueeScroll 110s linear infinite; }
 @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee-band:hover .marquee-track { animation-play-state: paused; }
 
 /* Divisor entre secoes: seta que sobe e desce */
 @keyframes scrollCueBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 .scroll-cue { animation: scrollCueBounce 2s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+
+/* Menu de navegacao: texto da o um leve salto ao passar o mouse */
+.nav-link { display: inline-block; transition: transform 0.25s cubic-bezier(.34,1.56,.64,1); }
+.nav-link:hover { transform: translateY(-3px); }
+@media (prefers-reduced-motion: reduce) { .nav-link { transition: none; } .nav-link:hover { transform: none; } }
 
 .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
