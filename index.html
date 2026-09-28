@@ -253,7 +253,7 @@
       <nav class="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
         <a href="#como-funciona" class="nav-link text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:text-white">Como funciona</a>
         <a href="#servicos" class="nav-link text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:text-white">O que você recebe</a>
-        <a href="ebook-analise-edital-sefaz-ce.html" class="nav-link text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:text-white">E-books</a>
+        <a href="ebook-analise-edital-sefaz-es.html" class="nav-link text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:text-white">E-books</a>
         <a href="#depoimentos" class="nav-link text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:text-white">Depoimentos</a>
         <a href="#faq" class="nav-link text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:text-white">Dúvidas</a>
       </nav>
@@ -276,7 +276,7 @@
       <div class="flex flex-col gap-1">
         <a href="#como-funciona" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">Como funciona</a>
         <a href="#servicos" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">O que você recebe</a>
-        <a href="ebook-analise-edital-sefaz-ce.html" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">E-books</a>
+        <a href="ebook-analise-edital-sefaz-es.html" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">E-books</a>
         <a href="#depoimentos" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">Depoimentos</a>
         <a href="#faq" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">Dúvidas</a>
         <div class="mt-3">
@@ -298,12 +298,15 @@
 <section id="hero" class="relative overflow-hidden bg-brand-navyDark pb-0 pt-32 sm:pt-40 md:flex md:min-h-[680px] md:items-center md:pb-16">
   <!-- Foto full-bleed: so no desktop -->
   <div class="absolute inset-0 hidden md:block">
-    <img src="assets/fabricio-hero.png" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle, de braços cruzados" class="h-full w-full object-cover object-[68%_22%]">
+    <picture class="block h-full w-full">
+      <source media="(max-width: 767px)" srcset="assets/fabricio-hero-mobile-648.jpg">
+      <img src="assets/fabricio-hero-1440.jpg" srcset="assets/fabricio-hero-1440.jpg 1440w, assets/fabricio-hero.jpg 2880w" sizes="100vw" fetchpriority="high" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle, sentado e de terno" class="h-full w-full object-cover object-[68%_22%]">
+    </picture>
   </div>
 
   <!-- Selos flutuantes sobre a foto (apenas desktop) -->
   <div class="pointer-events-none absolute inset-0 z-[2] hidden md:block">
-    <div class="hero-badge pointer-events-auto absolute flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 shadow-cardHover backdrop-blur-md" style="right:27%; top:44%; animation-duration:5.5s; animation-delay:0s;">
+    <div class="hero-badge pointer-events-auto absolute flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 shadow-cardHover backdrop-blur-md" style="right:27%; top:48%; animation-duration:5.5s; animation-delay:0s;">
       <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-white">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M14.5 9.5 13 13l-3.5 1.5L11 11l3.5-1.5Z"></path></svg>
       </span>
@@ -315,7 +318,7 @@
       </span>
       <span class="text-xs font-bold uppercase leading-snug tracking-wide text-white">Aprovação</span>
     </div>
-    <div class="hero-badge pointer-events-auto absolute flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 shadow-cardHover backdrop-blur-md" style="right:30%; bottom:16%; animation-duration:5.8s; animation-delay:1s;">
+    <div class="hero-badge pointer-events-auto absolute flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 shadow-cardHover backdrop-blur-md" style="right:30%; bottom:12%; animation-duration:5.8s; animation-delay:1s;">
       <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-white">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
       </span>
@@ -349,7 +352,10 @@
 
     <!-- Foto em cartao arredondado: apenas mobile/tablet -->
     <div class="relative mt-10 aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-cardHover md:hidden">
-      <img src="assets/fabricio-hero.png" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle, de braços cruzados" class="h-full w-full object-cover object-[70%_15%]">
+      <picture class="block h-full w-full">
+        <source media="(min-width: 768px)" srcset="assets/fabricio-hero-1440.jpg">
+        <img src="assets/fabricio-hero-mobile-648.jpg" srcset="assets/fabricio-hero-mobile-648.jpg 648w, assets/fabricio-hero-mobile.jpg 1296w" sizes="100vw" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle, sentado e de terno" class="h-full w-full object-cover object-center">
+      </picture>
     </div>
   </div>
 </section>
@@ -1198,7 +1204,7 @@
               </div>
               <div>
                 <label for="cargoConcurso" class="block text-sm font-medium text-white/80">Cargo/concurso pretendido *</label>
-                <input id="cargoConcurso" name="cargoConcurso" type="text" required placeholder="Ex.: Auditor Fiscal da SEFAZ-CE" class="ebook-input mt-1.5 w-full rounded-lg px-4 py-2.5 text-sm">
+                <input id="cargoConcurso" name="cargoConcurso" type="text" required placeholder="Ex.: Auditor Fiscal da SEFAZ-ES" class="ebook-input mt-1.5 w-full rounded-lg px-4 py-2.5 text-sm">
               </div>
             </div>
             <div>
@@ -1251,7 +1257,7 @@
       <ul class="mt-4 space-y-2">
         <li><a href="#como-funciona" class="text-sm text-white/60 hover:text-white">Como funciona</a></li>
         <li><a href="#servicos" class="text-sm text-white/60 hover:text-white">O que você recebe</a></li>
-        <li><a href="ebook-analise-edital-sefaz-ce.html" class="text-sm text-white/60 hover:text-white">E-books</a></li>
+        <li><a href="ebook-analise-edital-sefaz-es.html" class="text-sm text-white/60 hover:text-white">E-books</a></li>
         <li><a href="#depoimentos" class="text-sm text-white/60 hover:text-white">Depoimentos</a></li>
         <li><a href="#faq" class="text-sm text-white/60 hover:text-white">Dúvidas</a></li>
       </ul>

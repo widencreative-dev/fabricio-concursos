@@ -7,10 +7,19 @@ sem etapa de build. Igual à estrutura dos outros sites do projeto: um
 ## Estrutura
 
 ```
-index.html    Site inteiro (todas as seções, estilos e scripts)
+index.html                        Site inteiro (todas as seções, estilos e scripts)
+ebook-analise-edital-sefaz-es.html  Landing do guia estratégico da SEFAZ-ES (captura + link do Drive)
 assets/
-  logo.png            Logotipo usado no cabeçalho e rodapé
-  fabricio-hero.png   Foto do orientador usada no hero e na seção "Quem orienta"
+  logo.png                        Logotipo usado no cabeçalho e rodapé
+  logo com a ls.png               Logotipo em parceria com a LS Concursos
+  foto-fabricio-.png              Foto usada na seção "Quem orienta"
+  ebook-capa-sefaz-es.png         Capa do guia estratégico (landing do e-book)
+  styles.css                      Estilos próprios, fora do Tailwind
+  tailwind-config.js              Paleta e fontes da marca
+  fabricio-hero.jpg               Foto do hero, master 2880x1620 (desktop 2x)
+  fabricio-hero-1440.jpg          Hero desktop 1x
+  fabricio-hero-mobile.jpg        Hero mobile, recorte 4:5 (2x)
+  fabricio-hero-mobile-648.jpg    Hero mobile 1x
 ```
 
 ## Como rodar localmente
