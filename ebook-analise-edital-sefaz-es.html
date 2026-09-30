@@ -68,7 +68,7 @@
             </a>
           </div>
 
-          <form id="ebook-form" action="https://formspree.io/f/SEU_FORM_ID_AQUI" method="POST" class="mt-8 max-w-md space-y-3.5">
+          <form id="ebook-form" action="https://script.google.com/macros/s/AKfycbzb0aYPx2c9tpf_VT5CaKcvdmXcaIU4wZT87iqaYRxgiA32MH77g_8rYZA-x00SC54t/exec" method="POST" class="mt-8 max-w-md space-y-3.5">
             <div class="relative">
               <svg class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
               <input type="text" name="nome" required minlength="2" placeholder="Seu nome completo" class="ebook-input w-full rounded-xl py-3.5 pl-11 pr-4 text-sm">
@@ -196,8 +196,7 @@
 
     fetch(ebookForm.action, {
       method: "POST",
-      body: new FormData(ebookForm),
-      headers: { "Accept": "application/json" },
+      body: new URLSearchParams(new FormData(ebookForm)),
     })
       .then(function (response) {
         if (response.ok) {
