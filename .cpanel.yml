@@ -3,3 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home2/fabr3452/public_html/
     - /bin/cp -R index.html assets $DEPLOYPATH
+    - /bin/cp ebook-analise-edital-sefaz-es.html $DEPLOYPATH
