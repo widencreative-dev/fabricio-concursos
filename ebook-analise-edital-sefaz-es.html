@@ -212,10 +212,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     })
       .then(function (response) {
         if (response.ok) {
-          (window.dataLayer = window.dataLayer || []).push({ event: "lead" });
+          (window.dataLayer = window.dataLayer || []).push({ event: "lead_ebook", form: "ebook" });
           ebookForm.hidden = true;
           document.getElementById("ebook-form-success").hidden = false;
-          window.location.href = document.getElementById("ebook-guia-link").href;
+          // pequeno atraso para o GTM enviar a conversao antes de sair da pagina
+          setTimeout(function () {
+            window.location.href = document.getElementById("ebook-guia-link").href;
+          }, 400);
         } else {
           throw new Error("Falha no envio");
         }
