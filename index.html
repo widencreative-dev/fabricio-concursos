@@ -1187,12 +1187,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="rounded-xl2 border border-white/15 bg-white/10 p-6 shadow-cardHover backdrop-blur-md sm:p-8">
-        <!--
-          FORMULARIO: integrado com Formspree (https://formspree.io).
-          1. Crie uma conta gratuita em formspree.io e um novo formulario.
-          2. Troque "SEU_FORM_ID_AQUI" abaixo pelo ID fornecido pelo Formspree.
-        -->
-        <form id="contato-form" action="https://formspree.io/f/SEU_FORM_ID_AQUI" method="POST">
+        <!-- FORMULARIO: envia para o webhook do n8n (n8n.widencreative.com) -->
+        <form id="contato-form" action="https://n8n.widencreative.com/webhook/b5d67f69-76fc-4621-90e4-65e89c56784c" method="POST">
           <div id="form-success" hidden class="rounded-xl2 border border-white/15 bg-white/5 p-8 text-center">
             <h3 class="font-display text-lg font-semibold text-white">Mensagem enviada</h3>
             <p class="mt-2 text-sm text-white/70">Recebemos seus dados. Em breve o Fabrício entra em contato para conversar sobre o seu concurso.</p>
@@ -1465,7 +1461,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 
-  // Formulario de contato (envio via Formspree, sem recarregar a pagina)
+  // Formulario de contato (envio via webhook do n8n, sem recarregar a pagina)
   var contatoForm = document.getElementById("contato-form");
   contatoForm.addEventListener("submit", function (event) {
     event.preventDefault();
