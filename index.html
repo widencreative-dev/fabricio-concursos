@@ -371,15 +371,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="mt-5 max-w-[34ch] text-pretty text-base leading-[1.65] text-white/85 sm:mt-6 sm:max-w-none sm:text-lg sm:leading-relaxed md:text-justify">
         Chega de estudar sem saber se está no caminho certo. Sou <span class="whitespace-nowrap">Auditor Fiscal</span> e seu professor: monto um plano sob medida para você e acompanho sua preparação de perto.
       </p>
-      <div class="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:gap-4">
-        <a href="#contato" class="flow-btn flow-green btn-ripple group inline-flex w-full items-center justify-center gap-1 px-6 py-4 text-base font-semibold sm:w-auto sm:px-9">
+      <!-- A grade existe para o texto de apoio herdar a largura do botao: o
+           <a> ocupa a coluna inteira e define o tamanho dela, enquanto o <p>
+           entra com width:0 (nao conta no calculo) e volta a 100% da coluna
+           ja resolvida. -->
+      <div class="mt-7 grid w-full gap-3.5 sm:mt-8 sm:w-auto sm:justify-self-start">
+        <a href="#contato" class="flow-btn flow-green btn-ripple group inline-flex w-full items-center justify-center gap-1 px-6 py-4 text-base font-semibold sm:px-9">
           <svg class="flow-arrow arrow-left h-4 w-4" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           <span class="flow-text">Quero minha mentoria de estudos</span>
           <span class="flow-circle" aria-hidden="true"></span>
           <svg class="flow-arrow arrow-right h-4 w-4" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
+        <p class="w-0 min-w-full text-center text-[0.7rem] leading-relaxed text-white/40">Sem compromisso. Você conversa primeiro e entende se a mentoria é para você.</p>
       </div>
-      <p class="mt-3.5 text-center text-[0.7rem] leading-relaxed text-white/40 sm:text-left">Sem compromisso. Você conversa primeiro e entende se a mentoria é para você.</p>
     </div>
   </div>
 
