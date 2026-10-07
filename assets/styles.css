@@ -6,7 +6,11 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 
-body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
+/* overflow-x: clip impede que qualquer elemento posicionado crie rolagem
+   lateral no celular, sem quebrar position: sticky/fixed como o overflow
+   hidden quebraria. */
+html { overflow-x: clip; }
+body { background: #fff; color: #0F1024; overflow-x: clip; -webkit-font-smoothing: antialiased; }
 ::selection { background: rgba(139, 31, 224, 0.2); color: #1A0448; }
 :focus-visible { outline-offset: 2px; }
 
@@ -19,8 +23,6 @@ body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
   transform: translate(-50%,-50%) scale(0);
   transition: transform .6s cubic-bezier(.25,1,.5,1);
 }
-.btn-ripple:hover::before { transform: translate(-50%,-50%) scale(2.5); }
-.btn-ripple:hover { transform: translateY(-3px); }
 .btn-ripple:active { transform: translateY(1px); }
 
 /* FlowButton: seta desliza + circulo preenche no hover */
@@ -29,29 +31,20 @@ body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
   transition: all .6s cubic-bezier(.23,1,.32,1);
   isolation: isolate; transform: translateZ(0);
 }
-.flow-btn:hover { border-radius: 12px; }
 .flow-btn .flow-arrow { position: absolute; z-index: 9; transition: all .8s cubic-bezier(.34,1.56,.64,1); }
 .flow-btn .flow-arrow.arrow-left { left: -25%; }
-.flow-btn:hover .flow-arrow.arrow-left { left: 1rem; }
 .flow-btn .flow-arrow.arrow-right { right: 1rem; }
-.flow-btn:hover .flow-arrow.arrow-right { right: -25%; }
 .flow-btn .flow-text { position: relative; z-index: 1; transform: translateX(-0.75rem); transition: transform .8s ease-out; white-space: nowrap; }
-.flow-btn:hover .flow-text { transform: translateX(0.75rem); }
 .flow-btn .flow-circle {
   position: absolute; top: 50%; left: 50%; width: 1rem; height: 1rem;
   transform: translate(-50%,-50%); border-radius: 50%; opacity: 0;
   transition: all .8s cubic-bezier(.19,1,.22,1);
 }
-.flow-btn:hover .flow-circle { width: 480px; height: 480px; opacity: 1; }
 .flow-btn.flow-dark { border: 1.5px solid rgba(51,51,51,.4); color: #111111; }
-.flow-btn.flow-dark:hover { border-color: transparent; color: #fff; }
 .flow-btn.flow-dark .flow-arrow { stroke: #111111; }
-.flow-btn.flow-dark:hover .flow-arrow { stroke: #fff; }
 .flow-btn.flow-dark .flow-circle { background: #111111; }
 .flow-btn.flow-light { border: 1.5px solid rgba(255,255,255,.4); color: #fff; }
-.flow-btn.flow-light:hover { border-color: transparent; color: #1A0448; }
 .flow-btn.flow-light .flow-arrow { stroke: #fff; }
-.flow-btn.flow-light:hover .flow-arrow { stroke: #1A0448; }
 .flow-btn.flow-light .flow-circle { background: #fff; }
 .flow-btn.flow-gradient {
   border: none; color: #fff;
@@ -61,9 +54,44 @@ body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
      fracionaria (125%/150%). */
   box-shadow: 0 0 0 1px #7B2FE0, 0 10px 25px -6px rgba(139,31,224,.5);
 }
-.flow-btn.flow-gradient:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -6px rgba(139,31,224,.65); }
 .flow-btn.flow-gradient .flow-arrow { stroke: #fff; }
+/* Variante verde do CTA (mesma mecanica do .flow-gradient, cor chapada) */
+.flow-btn.flow-green {
+  border: none; color: #fff;
+  background-color: #24CC63;
+  box-shadow: 0 0 0 1px #24CC63, 0 10px 25px -6px rgba(36,204,99,.45);
+}
+.flow-btn.flow-green .flow-arrow { stroke: #fff; }
 .flow-btn:active { transform: scale(.96); }
+
+/* Estados de hover concentrados aqui e limitados a dispositivos com mouse:
+   no toque o :hover fica grudado depois do tap e o botao trava no estado
+   animado ate o usuario tocar em outro lugar da tela. */
+@media (hover: hover) {
+  .btn-ripple:hover::before { transform: translate(-50%,-50%) scale(2.5); }
+  .btn-ripple:hover { transform: translateY(-3px); }
+  .flow-btn:hover { border-radius: 12px; }
+  .flow-btn:hover .flow-arrow.arrow-left { left: 1rem; }
+  .flow-btn:hover .flow-arrow.arrow-right { right: -25%; }
+  .flow-btn:hover .flow-text { transform: translateX(0.75rem); }
+  .flow-btn:hover .flow-circle { width: 480px; height: 480px; opacity: 1; }
+  .flow-btn.flow-dark:hover { border-color: transparent; color: #fff; }
+  .flow-btn.flow-dark:hover .flow-arrow { stroke: #fff; }
+  .flow-btn.flow-light:hover { border-color: transparent; color: #1A0448; }
+  .flow-btn.flow-light:hover .flow-arrow { stroke: #1A0448; }
+  .flow-btn.flow-gradient:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -6px rgba(139,31,224,.65); }
+  .flow-btn.flow-green:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -6px rgba(36,204,99,.6); }
+  .testi-col:hover .testi-track { animation-play-state: paused; }
+  #servicos-track.group-hovering .servicos-card:not(.is-hovered) { filter: blur(3px); opacity: 0.6; }
+}
+
+/* No celular o rotulo do botao precisa poder quebrar em duas linhas: o
+   whitespace: nowrap acima estourava a largura da tela nos CTAs longos. As
+   setas somem porque a animacao que as desliza nunca roda no toque. */
+@media (max-width: 639px) {
+  .flow-btn .flow-text { white-space: normal; transform: none; text-align: center; }
+  .flow-btn .flow-arrow { display: none; }
+}
 
 /* Texto em gradiente (mesmo gradiente dos CTAs) */
 .gradient-text {
@@ -78,6 +106,16 @@ body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
   color: #fff !important;
 }
 
+/* Controles que so existem no toque. No desktop o proprio hover ja resolve,
+   entao mostrar o botao seria redundante. */
+.touch-only { display: none; }
+@media (hover: none) { .touch-only { display: flex; } }
+
+/* Tiras que rolam na horizontal no celular (abas do FAQ, tabela comparativa)
+   sem a barra de rolagem aparente. */
+.scroll-strip { scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
+.scroll-strip::-webkit-scrollbar { display: none; }
+
 /* Mural de depoimentos: fade nas bordas superior/inferior da parede de cartoes */
 .testi-wall {
   -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
@@ -88,27 +126,68 @@ body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
    (decorativo, sempre roda, como no mural de referencia) */
 @keyframes testiScroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 .testi-col { overflow: hidden; }
-.testi-track { animation: testiScroll linear infinite; will-change: transform; }
+.testi-track { animation: testiScroll var(--testi-speed, 20s) linear infinite; will-change: transform; }
 .testi-col.reverse .testi-track { animation-direction: reverse; }
-.testi-col:hover .testi-track { animation-play-state: paused; }
+.testi-wall.is-paused .testi-track { animation-play-state: paused; }
+/* No celular o mural vira uma coluna so: na velocidade do desktop o cartao
+   sai da tela antes de dar tempo de ler o depoimento. */
+@media (max-width: 767px) {
+  .testi-track { animation-duration: calc(var(--testi-speed, 20s) * 2.75); }
+}
 
-/* Selos flutuantes sobre a foto do hero (decorativo, sempre roda como a faixa de palavras-chave) */
+/* Selos flutuantes sobre a foto do hero */
 .hero-badge { animation-name: heroBadgeFloat; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
 @keyframes heroBadgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+/* Brilho ambiente atras do texto do hero no celular, onde a foto deixa de ser
+   fundo de tela cheia e o bloco escuro ficaria chapado. */
+.hero-glow {
+  background:
+    radial-gradient(58% 38% at 12% 2%, rgba(139,31,224,.42) 0%, transparent 72%),
+    radial-gradient(52% 32% at 96% 16%, rgba(199,125,255,.24) 0%, transparent 72%);
+}
 
 /* Faixa de frases: carrossel horizontal infinito e automatico (sempre roda, nao pausa no hover) */
 .marquee-track { animation: marqueeScroll 110s linear infinite; }
 @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* Divisor entre secoes: seta que sobe e desce */
-@keyframes scrollCueBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+/* Divisor entre secoes: seta que sobe e desce.
+   Os keyframes precisam repetir o translate(-50%,-50%) que centra o circulo
+   na linha: a propriedade transform e uma so, entao animar apenas o eixo Y
+   descartaria a centralizacao feita pelas classes do Tailwind. */
+@keyframes scrollCueBounce {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50% { transform: translate(-50%, calc(-50% + 4px)); }
+}
 .scroll-cue { animation: scrollCueBounce 2s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+/* No desktop o divisor fica parado, so centrado na linha. */
+@media (hover: hover) { .scroll-cue { animation: none; } }
 
-/* Menu de navegacao: texto da o um leve salto ao passar o mouse */
+/* Dica de rolagem entre o texto do hero e a foto, no mobile: a seta desce e
+   some, sugerindo o movimento em vez de so balancar no lugar. */
+@keyframes scrollHintFall {
+  0% { transform: translateY(-5px); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateY(9px); opacity: 0; }
+}
+.scroll-hint { animation: scrollHintFall 2.4s ease-in-out infinite; }
+
+/* Menu de navegacao: texto da um leve salto ao passar o mouse */
 .nav-link { display: inline-block; transition: transform 0.25s cubic-bezier(.34,1.56,.64,1); }
-.nav-link:hover { transform: translateY(-3px); }
-@media (prefers-reduced-motion: reduce) { .nav-link { transition: none; } .nav-link:hover { transform: none; } }
+@media (hover: hover) { .nav-link:hover { transform: translateY(-3px); } }
+
+/* Quem pede menos movimento no sistema nao ve as animacoes decorativas. A
+   faixa de palavras-chave continua rodando por ser a unica animacao
+   puramente ambiental da pagina. */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue { animation: none; }
+  .scroll-hint { animation: none; opacity: .55; }
+  .hero-badge { animation: none; }
+  .testi-track { animation: none; }
+  .nav-link { transition: none; }
+  .nav-link:hover { transform: none; }
+}
 
 .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
@@ -117,6 +196,14 @@ body { background: #fff; color: #0F1024; -webkit-font-smoothing: antialiased; }
 .ebook-input::placeholder { color: rgba(255,255,255,.4); }
 .ebook-input:focus { outline: none; border-color: #C77DFF; background: rgba(255,255,255,.08); }
 
+/* O iOS da zoom automatico no campo focado quando a fonte declarada e menor
+   que 16px, e a pagina fica deslocada depois. */
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px; }
+}
+
+/* Botao flutuante do WhatsApp: respeita a barra de gestos do iPhone */
+.wa-float { bottom: max(1.25rem, env(safe-area-inset-bottom)); }
+
 /* Grade de servicos: ao passar o mouse em um card, os demais desfocam (efeito de destaque) */
 .servicos-card { transition: filter 0.35s ease, opacity 0.35s ease, transform 0.3s ease, box-shadow 0.3s ease; }
-#servicos-track.group-hovering .servicos-card:not(.is-hovered) { filter: blur(3px); opacity: 0.6; }

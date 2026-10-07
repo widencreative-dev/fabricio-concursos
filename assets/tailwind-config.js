@@ -1,6 +1,12 @@
 // Configuracao do Tailwind (via CDN) compartilhada por todas as paginas do
 // site. Carregue depois do script https://cdn.tailwindcss.com.
 tailwind.config = {
+  future: {
+    // Faz todo utilitario hover: do Tailwind valer so onde existe mouse. Sem
+    // isso, no celular o estado de hover fica grudado no cartao tocado ate o
+    // usuario tocar em outro lugar da tela.
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       colors: {

@@ -259,7 +259,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
     <div id="header-pill" class="flex items-center justify-between gap-4 rounded-full border border-white/10 bg-brand-navy/40 px-3 py-2 backdrop-blur-md transition-colors duration-500 sm:px-4">
       <a href="#hero" class="flex items-center gap-2">
-        <img src="assets/logo.png" alt="Fabrício Concursos, mentoria de estudos para concursos fiscais e de controle" class="h-7 w-auto sm:h-9">
+        <picture>
+          <source srcset="assets/logo.webp" type="image/webp">
+          <img src="assets/logo.png" width="727" height="171" alt="Fabrício Concursos, mentoria de estudos para concursos fiscais e de controle" class="h-7 w-auto sm:h-9">
+        </picture>
       </a>
 
       <nav class="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
@@ -286,11 +289,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div id="mobile-menu" hidden class="mt-2 rounded-2xl border border-white/10 bg-brand-navy/90 p-4 shadow-cardHover backdrop-blur-md lg:hidden">
       <div class="flex flex-col gap-1">
-        <a href="#como-funciona" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">Como funciona</a>
-        <a href="#servicos" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">O que você recebe</a>
-        <a href="ebook-analise-edital-sefaz-es.html" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">E-books</a>
-        <a href="#depoimentos" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">Depoimentos</a>
-        <a href="#faq" class="mobile-menu-link rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10">Dúvidas</a>
+        <a href="#como-funciona" class="mobile-menu-link rounded-lg px-3 py-3 text-[0.95rem] font-medium text-white/90 hover:bg-white/10">Como funciona</a>
+        <a href="#servicos" class="mobile-menu-link rounded-lg px-3 py-3 text-[0.95rem] font-medium text-white/90 hover:bg-white/10">O que você recebe</a>
+        <a href="ebook-analise-edital-sefaz-es.html" class="mobile-menu-link rounded-lg px-3 py-3 text-[0.95rem] font-medium text-white/90 hover:bg-white/10">E-books</a>
+        <a href="#depoimentos" class="mobile-menu-link rounded-lg px-3 py-3 text-[0.95rem] font-medium text-white/90 hover:bg-white/10">Depoimentos</a>
+        <a href="#faq" class="mobile-menu-link rounded-lg px-3 py-3 text-[0.95rem] font-medium text-white/90 hover:bg-white/10">Dúvidas</a>
         <div class="mt-3">
           <a href="#contato" class="mobile-menu-link flow-btn flow-gradient btn-ripple group flex w-full items-center justify-center gap-1 px-8 py-3 text-sm font-semibold">
             <svg class="flow-arrow arrow-left h-4 w-4" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -307,11 +310,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main>
 
 <!-- ===================== HERO ===================== -->
-<section id="hero" class="relative overflow-hidden bg-brand-navyDark pb-0 pt-32 sm:pt-40 md:flex md:min-h-[680px] md:items-center md:pb-16">
+<section id="hero" class="relative overflow-hidden bg-brand-navyDark pb-0 pt-24 sm:pt-32 md:flex md:min-h-[680px] md:items-center md:pb-16 md:pt-40">
+  <!-- Brilho ambiente atras do texto: so no mobile, onde a foto deixa de ser
+       fundo de tela cheia e o bloco escuro ficaria chapado. -->
+  <div aria-hidden="true" class="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[60vh] md:hidden"></div>
+
   <!-- Foto full-bleed: so no desktop -->
   <div class="absolute inset-0 hidden md:block">
     <picture class="block h-full w-full">
-      <source media="(max-width: 767px)" srcset="assets/fabricio-hero-mobile-648.jpg">
+      <!-- Esta foto fica escondida no celular, mas o navegador baixa a imagem
+           assim mesmo: o srcset aponta para o mesmo arquivo que a versao
+           visivel usa, para o download ser aproveitado do cache. -->
+      <source media="(max-width: 767px)" srcset="assets/fabricio-hero-mobile-648.jpg 648w, assets/fabricio-hero-mobile.jpg 1296w" sizes="100vw">
       <img src="assets/fabricio-hero-1440.jpg" srcset="assets/fabricio-hero-1440.jpg 1440w, assets/fabricio-hero.jpg 2880w" sizes="100vw" fetchpriority="high" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle, sentado e de terno" class="h-full w-full object-cover object-[68%_22%]">
     </picture>
   </div>
@@ -342,32 +352,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <div class="relative z-[2] mx-auto w-full max-w-6xl px-4 pb-12 sm:px-6 md:pb-0 lg:px-8">
+  <div class="relative z-[2] mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="max-w-xl">
-      <span class="inline-block rounded-full bg-white/10 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-white">Concursos fiscais, de controle, tribunais, policiais, administrativos e bancários</span>
-      <h1 class="mt-5 font-display text-5xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl">
-        Não falta esforço.<br>
-        <span class="gradient-text">Falta direção.</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-wider text-white sm:px-4 sm:py-1">
+        <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-lavender"></span>
+        <!-- No celular a lista completa de areas ocupava tres linhas antes do titulo -->
+        <span class="sm:hidden">Fiscais &middot; Controle &middot; Tribunais &middot; Policiais</span>
+        <span class="hidden sm:inline">Concursos fiscais, de controle, tribunais, policiais, administrativos e bancários</span>
+      </span>
+      <h1 class="mt-5 font-display text-[clamp(2.25rem,10.5vw,3rem)] font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+        Quer ser <span class="gradient-text">Auditor Fiscal?</span>
+        <span class="mt-4 block text-[1.35rem] font-bold leading-snug tracking-normal text-white/85 sm:mt-5 sm:text-2xl">
+          Seja orientado por quem já é <span class="text-white">Auditor Fiscal</span>.
+        </span>
       </h1>
-      <p class="mt-6 text-lg leading-relaxed text-white/85 text-justify">
-        Mentoria de estudos para quem mira Auditor Fiscal, SEFAZ, Receita, tribunais de contas e controladorias, com diagnóstico, metas semanais e acompanhamento direto de um Auditor Fiscal. Atendimento 100% online, 24 horas por dia.
+      <!-- text-pretty evita linha final orfa e os nowrap impedem que os termos
+           da marca quebrem no meio na largura do celular. -->
+      <p class="mt-5 max-w-[34ch] text-pretty text-base leading-[1.65] text-white/85 sm:mt-6 sm:max-w-none sm:text-lg sm:leading-relaxed md:text-justify">
+        Chega de estudar sem saber se está no caminho certo. Sou <span class="whitespace-nowrap">Auditor Fiscal</span> e seu professor: monto um plano sob medida para você e acompanho sua preparação de perto.
       </p>
-      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-        <a href="#contato" class="flow-btn flow-gradient btn-ripple group inline-flex items-center justify-center gap-1 px-9 py-4 text-base font-semibold">
+      <div class="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:gap-4">
+        <a href="#contato" class="flow-btn flow-green btn-ripple group inline-flex w-full items-center justify-center gap-1 px-6 py-4 text-base font-semibold sm:w-auto sm:px-9">
           <svg class="flow-arrow arrow-left h-4 w-4" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          <span class="flow-text">Quero saber se posso ser ajudado</span>
+          <span class="flow-text">Quero minha mentoria de estudos</span>
           <span class="flow-circle" aria-hidden="true"></span>
           <svg class="flow-arrow arrow-right h-4 w-4" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
+      <p class="mt-3.5 text-center text-[0.7rem] leading-relaxed text-white/40 sm:text-left">Sem compromisso. Você conversa primeiro e entende se a mentoria é para você.</p>
+    </div>
+  </div>
+
+  <!-- Dica de rolagem na costura entre o bloco de texto e a foto -->
+  <div aria-hidden="true" class="relative z-[2] mt-7 flex justify-center md:hidden">
+    <svg class="scroll-hint h-5 w-5 text-white/35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+  </div>
+
+  <!-- Foto de ponta a ponta com selos sobrepostos: apenas mobile/tablet.
+       A foto deixa de ser um cartao decorativo depois do texto e passa a
+       carregar os mesmos selos de vidro e os numeros de prova social que o
+       desktop mostra flutuando sobre o retrato. -->
+  <div class="relative z-[2] mt-4 aspect-[1/1.1] w-full overflow-hidden sm:mt-6 sm:aspect-[5/4] md:hidden">
+    <picture class="block h-full w-full">
+      <source media="(min-width: 768px)" srcset="assets/fabricio-hero-1440.jpg">
+      <img src="assets/fabricio-hero-mobile-648.jpg" srcset="assets/fabricio-hero-mobile-648.jpg 648w, assets/fabricio-hero-mobile.jpg 1296w" sizes="100vw" width="648" height="810" fetchpriority="high" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle, sentado e de terno" class="h-full w-full object-cover object-[center_35%]">
+    </picture>
+
+    <!-- Funde o roxo do estudio com o fundo escuro da secao, em cima e embaixo -->
+    <div aria-hidden="true" class="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-brand-navyDark to-transparent"></div>
+    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-[46%] bg-gradient-to-t from-brand-navyDark via-brand-navyDark/80 to-transparent"></div>
+
+    <!-- Assinatura sobre o espaco vazio da foto, logo acima do ombro -->
+    <div class="absolute right-6 top-[33%] text-left sm:right-[12%] sm:top-[35%]">
+      <p class="font-display text-[0.64rem] font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_14px_rgba(11,1,35,.7)] sm:text-[0.8rem]">Fabrício Rodrigues</p>
+      <p class="mt-0.5 whitespace-nowrap text-[0.42rem] font-semibold uppercase leading-snug tracking-tight text-white/70 [text-shadow:0_2px_12px_rgba(11,1,35,.7)] sm:text-[0.5rem]">Auditor Fiscal - ES <span class="text-white/40">|</span> Professor</p>
     </div>
 
-    <!-- Foto em cartao arredondado: apenas mobile/tablet -->
-    <div class="relative mt-10 aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-cardHover md:hidden">
-      <picture class="block h-full w-full">
-        <source media="(min-width: 768px)" srcset="assets/fabricio-hero-1440.jpg">
-        <img src="assets/fabricio-hero-mobile-648.jpg" srcset="assets/fabricio-hero-mobile-648.jpg 648w, assets/fabricio-hero-mobile.jpg 1296w" sizes="100vw" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle, sentado e de terno" class="h-full w-full object-cover object-center">
-      </picture>
+    <!-- Numeros de prova social, os mesmos da secao de depoimentos -->
+    <div class="absolute inset-x-0 bottom-0 grid grid-cols-3 items-end px-3 pb-7">
+      <div class="px-1 text-center">
+        <p class="font-display text-xl font-extrabold leading-none text-white">800+</p>
+        <p class="mt-1 text-[0.58rem] font-semibold uppercase leading-snug tracking-wide text-white/65">alunos<br>atendidos</p>
+      </div>
+      <div class="border-x border-white/15 px-1 text-center">
+        <p class="font-display text-xl font-extrabold leading-none text-white">16 mil+</p>
+        <p class="mt-1 text-[0.58rem] font-semibold uppercase leading-snug tracking-wide text-white/65">aprovados<br>na LS Concursos</p>
+      </div>
+      <div class="px-1 text-center">
+        <p class="font-display text-xl font-extrabold leading-none text-white">24+</p>
+        <p class="mt-1 text-[0.58rem] font-semibold uppercase leading-snug tracking-wide text-white/65">anos de<br>experiência</p>
+      </div>
     </div>
   </div>
 </section>
@@ -399,7 +453,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ===================== DOR / PROBLEMA ===================== -->
-<section id="dores" class="py-20 sm:py-28">
+<section id="dores" class="py-16 sm:py-24 lg:py-28">
   <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <span class="inline-block text-sm font-semibold uppercase tracking-wider text-brand-magenta">O que trava a maioria</span>
@@ -409,19 +463,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div class="dor-card rounded-xl2 border border-ink-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-purple/30 hover:shadow-cardHover">
         <h3 class="font-display text-lg font-semibold text-ink-900">Estudar muito sem saber se está no caminho certo</h3>
-        <p class="mt-3 text-sm leading-relaxed text-ink-500 text-justify">Horas de estudo por dia, mas nenhuma certeza de que o esforço está indo para as disciplinas que mais pesam em provas, como Direito Tributário, Contabilidade e Auditoria.</p>
+        <p class="mt-3 text-sm leading-relaxed text-ink-500 md:text-justify">Horas de estudo por dia, mas nenhuma certeza de que o esforço está indo para as disciplinas que mais pesam em provas, como Direito Tributário, Contabilidade e Auditoria.</p>
       </div>
       <div class="dor-card rounded-xl2 border border-ink-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-purple/30 hover:shadow-cardHover">
         <h3 class="font-display text-lg font-semibold text-ink-900">Não saber o que estudar a cada dia</h3>
-        <p class="mt-3 text-sm leading-relaxed text-ink-500 text-justify">Editais trazem dezenas de tópicos, as fontes são muitas e a decisão diária sobre o que estudar consome tempo e energia que deveriam ir para o estudo em si.</p>
+        <p class="mt-3 text-sm leading-relaxed text-ink-500 md:text-justify">Editais trazem dezenas de tópicos, as fontes são muitas e a decisão diária sobre o que estudar consome tempo e energia que deveriam ir para o estudo em si.</p>
       </div>
       <div class="dor-card rounded-xl2 border border-ink-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-purple/30 hover:shadow-cardHover">
         <h3 class="font-display text-lg font-semibold text-ink-900">Materiais desatualizados ou prolixos</h3>
-        <p class="mt-3 text-sm leading-relaxed text-ink-500 text-justify">Tempo perdido com conteúdo que não acompanha as atualizações das legislações nem reflete como a banca do seu certame cobra a matéria.</p>
+        <p class="mt-3 text-sm leading-relaxed text-ink-500 md:text-justify">Tempo perdido com conteúdo que não acompanha as atualizações das legislações nem reflete como a banca do seu certame cobra a matéria.</p>
       </div>
       <div class="dor-card rounded-xl2 border border-ink-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-purple/30 hover:shadow-cardHover">
         <h3 class="font-display text-lg font-semibold text-ink-900">Nenhum acompanhamento real</h3>
-        <p class="mt-3 text-sm leading-relaxed text-ink-500 text-justify">Cursos gravados e apostilas genéricas não enxergam o seu progresso individual nem ajustam a rota quando uma disciplina específica do edital não está rendendo.</p>
+        <p class="mt-3 text-sm leading-relaxed text-ink-500 md:text-justify">Cursos gravados e apostilas genéricas não enxergam o seu progresso individual nem ajustam a rota quando uma disciplina específica do edital não está rendendo.</p>
       </div>
     </div>
   </div>
@@ -434,7 +488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ===================== SOLUCAO ===================== -->
-<section id="solucao" class="bg-ink-100/60 py-20 sm:py-28">
+<section id="solucao" class="bg-ink-100/60 py-16 sm:py-24 lg:py-28">
   <div class="mx-auto w-full max-w-3xl px-4 text-center sm:px-6 lg:px-8">
     <span class="inline-block text-sm font-semibold uppercase tracking-wider text-brand-magenta">A proposta</span>
     <h2 class="mt-2 font-display text-3xl font-black tracking-tight text-ink-900 sm:text-4xl">Você não precisa de mais conteúdo. <span class="gradient-text">Precisa de um plano.</span></h2>
@@ -457,7 +511,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ===================== COMO FUNCIONA ===================== -->
-<section id="como-funciona" class="py-20 sm:py-28">
+<section id="como-funciona" class="py-16 sm:py-24 lg:py-28">
   <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <span class="inline-block text-sm font-semibold uppercase tracking-wider text-brand-magenta">Como funciona</span>
@@ -509,7 +563,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ===================== SERVICOS / O QUE VOCE RECEBE ===================== -->
-<section id="servicos" class="bg-ink-100/60 py-20 sm:py-28">
+<section id="servicos" class="bg-ink-100/60 py-16 sm:py-24 lg:py-28">
   <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <span class="inline-block text-sm font-semibold uppercase tracking-wider text-brand-magenta">O que você recebe</span>
@@ -587,17 +641,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ===================== AUTORIDADE ===================== -->
-<section id="autoridade" class="py-20 sm:py-28">
+<section id="autoridade" class="py-16 sm:py-24 lg:py-28">
   <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(240px,360px)_1fr] lg:gap-14">
       <div class="mx-auto w-full max-w-[280px] lg:mx-0 lg:max-w-none">
-        <img src="assets/foto-fabricio-.png" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle" class="h-auto w-full">
+        <!-- O PNG original tem 1 MB para aparecer com 280px de largura no
+             celular; o WebP cobre todos os navegadores atuais e o PNG fica
+             como reserva. -->
+        <picture>
+          <source srcset="assets/foto-fabricio.webp" type="image/webp">
+          <img src="assets/foto-fabricio-.png" width="1080" height="1350" loading="lazy" decoding="async" alt="Fabrício Rodrigues, Auditor Fiscal e mentor de estudos para concursos fiscais e de controle" class="h-auto w-full">
+        </picture>
       </div>
       <div>
         <span class="inline-block text-sm font-semibold uppercase tracking-wider text-brand-magenta">Quem orienta</span>
         <h2 class="mt-2 font-display text-3xl font-black tracking-tight text-ink-900 sm:text-4xl">Quem te orienta é um <span class="gradient-text">Auditor Fiscal em exercício</span></h2>
-        <p class="mt-6 text-base leading-relaxed text-ink-500 text-justify">Fabrício Rodrigues é Auditor Fiscal da SEFAZ-ES, graduado em Ciências Militares, Administração e Ciências Contábeis, com pós-graduação em Auditoria em Organizações do Setor Público e mestrando em Contabilidade e Administração pela FUCAPE Business School. Atua no mercado de concursos públicos desde 2002, quando prestou seu primeiro concurso com apenas 15 anos de idade.</p>
-        <p class="mt-4 text-base leading-relaxed text-ink-500 text-justify">Quem já enfrentou um edital pesado e complexo sabe que o papel do mentor não é entregar conteúdo pronto, e sim atuar de forma direta: definir prioridades, revisar o progresso e apontar ajustes que um candidato sozinho dificilmente perceberia a tempo. Atua como mentor de alunos e é sócio da LS Concursos, empresa de preparação para concursos públicos de alto nível, atuando há 16 anos com mais de 16 mil alunos aprovados.</p>
+        <p class="mt-6 text-base leading-relaxed text-ink-500 md:text-justify">Fabrício Rodrigues é Auditor Fiscal da SEFAZ-ES, graduado em Ciências Militares, Administração e Ciências Contábeis, com pós-graduação em Auditoria em Organizações do Setor Público e mestrando em Contabilidade e Administração pela FUCAPE Business School. Atua no mercado de concursos públicos desde 2002, quando prestou seu primeiro concurso com apenas 15 anos de idade.</p>
+        <p class="mt-4 text-base leading-relaxed text-ink-500 md:text-justify">Quem já enfrentou um edital pesado e complexo sabe que o papel do mentor não é entregar conteúdo pronto, e sim atuar de forma direta: definir prioridades, revisar o progresso e apontar ajustes que um candidato sozinho dificilmente perceberia a tempo. Atua como mentor de alunos e é sócio da LS Concursos, empresa de preparação para concursos públicos de alto nível, atuando há 16 anos com mais de 16 mil alunos aprovados.</p>
       </div>
     </div>
     <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -624,7 +684,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ===================== DEPOIMENTOS ===================== -->
-<section id="depoimentos" class="bg-ink-100/60 py-20 sm:py-28">
+<section id="depoimentos" class="bg-ink-100/60 py-16 sm:py-24 lg:py-28">
   <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <span class="inline-block text-sm font-semibold uppercase tracking-wider text-brand-magenta">Depoimentos</span>
@@ -633,9 +693,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="mt-12">
-      <div class="testi-wall grid max-h-[620px] grid-cols-1 gap-5 overflow-hidden md:grid-cols-3" aria-label="Depoimentos de alunos acompanhados">
+      <div id="testi-wall" class="testi-wall grid max-h-[500px] grid-cols-1 gap-5 overflow-hidden md:max-h-[620px] md:grid-cols-3" aria-label="Depoimentos de alunos acompanhados">
         <div class="testi-col">
-          <div class="testi-track flex flex-col gap-5" style="animation-duration:16s; animation-delay:0s;">
+          <div class="testi-track flex flex-col gap-5" style="--testi-speed:16s; animation-delay:0s;">
             <div class="testi-card h-[190px] shrink-0 overflow-hidden rounded-xl2 border border-ink-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-purple/30 hover:shadow-cardHover">
               <div class="flex items-center gap-3 border-b border-ink-100 pb-4">
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-xs font-bold text-white">CV</span>
@@ -697,7 +757,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="testi-col reverse hidden md:block">
-          <div class="testi-track flex flex-col gap-5" style="animation-duration:20s; animation-delay:-7s;">
+          <div class="testi-track flex flex-col gap-5" style="--testi-speed:20s; animation-delay:-7s;">
             <div class="testi-card h-[190px] shrink-0 overflow-hidden rounded-xl2 border border-ink-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-purple/30 hover:shadow-cardHover">
               <div class="flex items-center gap-3 border-b border-ink-100 pb-4">
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-xs font-bold text-white">MS</span>
@@ -759,7 +819,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="testi-col hidden md:block">
-          <div class="testi-track flex flex-col gap-5" style="animation-duration:24s; animation-delay:-14s;">
+          <div class="testi-track flex flex-col gap-5" style="--testi-speed:24s; animation-delay:-14s;">
             <div class="testi-card h-[190px] shrink-0 overflow-hidden rounded-xl2 border border-ink-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-purple/30 hover:shadow-cardHover">
               <div class="flex items-center gap-3 border-b border-ink-100 pb-4">
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-cta text-xs font-bold text-white">RS</span>
@@ -806,9 +866,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
       </div>
+
+      <!-- No desktop o mural pausa ao passar o mouse. No toque nao existe
+           hover, entao o controle precisa ser um botao de verdade. -->
+      <div class="touch-only mt-5 justify-center">
+        <button type="button" id="testi-pause" class="inline-flex items-center gap-2 rounded-full border border-ink-100 bg-white px-4 py-2.5 text-xs font-semibold text-ink-500 shadow-card transition-colors hover:text-brand-purple" aria-pressed="false" aria-controls="testi-wall">
+          <svg aria-hidden="true" class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+          <span id="testi-pause-label">Pausar depoimentos</span>
+        </button>
+      </div>
     </div>
 
-    <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4">
+    <div class="mt-14 grid grid-cols-2 gap-8 sm:mt-16 sm:grid-cols-4">
       <div class="text-center"><p class="counter font-display text-3xl font-bold text-brand-navy sm:text-4xl" data-count-to="800" data-count-suffix="+">0+</p><p class="mt-1 text-xs uppercase tracking-wide text-ink-500 sm:text-sm">alunos atendidos</p></div>
       <div class="text-center"><p class="counter font-display text-3xl font-bold text-brand-navy sm:text-4xl" data-count-to="16" data-count-suffix=" mil+">0 mil+</p><p class="mt-1 text-xs uppercase tracking-wide text-ink-500 sm:text-sm">alunos aprovados (LS Concursos)</p></div>
       <div class="text-center"><p class="counter font-display text-3xl font-bold text-brand-navy sm:text-4xl" data-count-to="24" data-count-suffix="+">0+</p><p class="mt-1 text-xs uppercase tracking-wide text-ink-500 sm:text-sm">anos de experiência com concursos</p></div>
@@ -846,19 +915,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ===================== FAQ ===================== -->
-<section id="faq" class="py-20 sm:py-28">
+<section id="faq" class="py-16 sm:py-24 lg:py-28">
   <div class="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <span class="inline-block text-sm font-semibold uppercase tracking-wider text-brand-magenta">Dúvidas frequentes</span>
       <h2 class="mt-2 font-display text-3xl font-black tracking-tight text-ink-900 sm:text-4xl">As perguntas que todo candidato faz <span class="gradient-text">antes de começar</span></h2>
     </div>
 
-    <div class="mt-10 flex flex-wrap justify-center gap-2" id="faq-tabs" role="tablist">
-      <button type="button" class="faq-tab-btn faq-tab-active rounded-full border border-ink-100 px-4 py-2 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:text-sm" data-faq-tab="orientacao" aria-selected="true" role="tab">Orientação de Estudos + E-books</button>
-      <button type="button" class="faq-tab-btn rounded-full border border-ink-100 px-4 py-2 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:text-sm" data-faq-tab="financeiro" aria-selected="false" role="tab">Financeiro</button>
-      <button type="button" class="faq-tab-btn rounded-full border border-ink-100 px-4 py-2 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:text-sm" data-faq-tab="direcionado" aria-selected="false" role="tab">Estudo Direcionado</button>
-      <button type="button" class="faq-tab-btn rounded-full border border-ink-100 px-4 py-2 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:text-sm" data-faq-tab="revisaco" aria-selected="false" role="tab">Revisaço</button>
-      <button type="button" class="faq-tab-btn rounded-full border border-ink-100 px-4 py-2 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:text-sm" data-faq-tab="comparativo" aria-selected="false" role="tab">Orientação de Estudos x Estudo Direcionado x Revisaço</button>
+    <!-- No celular as cinco abas viram uma tira que rola na horizontal com
+         encaixe: empilhadas, elas ocupavam meia tela antes da primeira resposta. -->
+    <div class="scroll-strip -mx-4 mt-8 flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:mt-10 sm:flex-wrap sm:justify-center sm:overflow-x-visible sm:px-0" id="faq-tabs" role="tablist">
+      <button type="button" class="faq-tab-btn faq-tab-active shrink-0 snap-start rounded-full border border-ink-100 px-4 py-2.5 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:py-2 sm:text-sm" data-faq-tab="orientacao" aria-selected="true" role="tab">Orientação de Estudos + E-books</button>
+      <button type="button" class="faq-tab-btn shrink-0 snap-start rounded-full border border-ink-100 px-4 py-2.5 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:py-2 sm:text-sm" data-faq-tab="financeiro" aria-selected="false" role="tab">Financeiro</button>
+      <button type="button" class="faq-tab-btn shrink-0 snap-start rounded-full border border-ink-100 px-4 py-2.5 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:py-2 sm:text-sm" data-faq-tab="direcionado" aria-selected="false" role="tab">Estudo Direcionado</button>
+      <button type="button" class="faq-tab-btn shrink-0 snap-start rounded-full border border-ink-100 px-4 py-2.5 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:py-2 sm:text-sm" data-faq-tab="revisaco" aria-selected="false" role="tab">Revisaço</button>
+      <button type="button" class="faq-tab-btn shrink-0 snap-start rounded-full border border-ink-100 px-4 py-2.5 text-xs font-semibold text-ink-500 transition-colors hover:text-brand-purple sm:py-2 sm:text-sm" data-faq-tab="comparativo" aria-selected="false" role="tab" aria-label="Comparativo entre Orientação de Estudos, Estudo Direcionado e Revisaço"><span class="sm:hidden">Comparativo dos planos</span><span class="hidden sm:inline">Orientação de Estudos x Estudo Direcionado x Revisaço</span></button>
     </div>
 
     <div class="mt-6">
@@ -1059,7 +1130,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       </div>
       <div class="faq-tab-panel rounded-xl2 border border-ink-100 bg-white p-5" data-faq-panel="comparativo" hidden>
-        <div class="overflow-x-auto">
+        <!-- A tabela nao cabe na largura do celular: o aviso avisa que ela rola -->
+        <p class="mb-3 flex items-center gap-1.5 text-xs text-ink-300 sm:hidden">
+          <svg aria-hidden="true" class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5 3 12l5 7M16 5l5 7-5 7"></path></svg>
+          Arraste a tabela para o lado para ver todos os planos.
+        </p>
+        <div class="scroll-strip overflow-x-auto">
         <table class="w-full min-w-[560px] border-collapse text-center text-sm">
           <thead>
             <tr class="border-b border-ink-100">
@@ -1177,13 +1253,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ===================== CTA FINAL + FORMULARIO ===================== -->
-<section id="contato" class="bg-brand-navy py-20 sm:py-28">
+<section id="contato" class="bg-brand-navy py-16 sm:py-24 lg:py-28">
   <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
       <div>
         <span class="inline-block rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white">Próximo passo</span>
         <h2 class="mt-5 font-display text-3xl font-black tracking-tight text-white sm:text-4xl">Descubra se a mentoria <span class="gradient-text">faz sentido</span> para o seu momento</h2>
-        <p class="mt-6 text-base leading-relaxed text-white/80 text-justify">Preencha o formulário ao lado contando qual cargo você persegue, seja área fiscal (Auditor Fiscal, ISS, SEFAZ ou Receita Federal), de controle (Auditor e Analista de Controle), Tribunais (Analista e Técnico Judiciário), policial (Delegado, Investigador, Escrivão, Agente, Oficial, Policial), administrativo (Analista, Técnico, entre outros) ou bancária. O atendimento é 100% online, disponível 24 horas por dia, 7 dias por semana, e a conversa inicial serve para entender se é possível te ajudar antes de qualquer compromisso.</p>
+        <p class="mt-6 font-display text-lg font-bold leading-snug text-white">Conte qual cargo você quer conquistar.</p>
+        <!-- O formulario so fica ao lado a partir de lg; abaixo disso ele vem
+             embaixo, entao a instrucao acompanha o layout. -->
+        <p class="mt-3 text-base leading-relaxed text-white/80 md:text-justify">Preencha o formulário <span class="lg:hidden">abaixo</span><span class="hidden lg:inline">ao lado</span> e eu entro em contato para entender seu momento nos estudos. Atendo candidatos das áreas fiscal, de controle, tribunais, policial, administrativa e bancária.</p>
+        <p class="mt-4 text-base leading-relaxed text-white/80 md:text-justify">A conversa inicial é sem compromisso: primeiro vemos juntos se a mentoria faz sentido para você. 100% online.</p>
       </div>
 
       <div class="rounded-xl2 border border-white/15 bg-white/10 p-6 shadow-cardHover backdrop-blur-md sm:p-8">
@@ -1208,7 +1288,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div>
                 <label for="whatsapp" class="block text-sm font-medium text-white/80">WhatsApp *</label>
-                <input id="whatsapp" name="whatsapp" type="tel" required placeholder="(00) 00000-0000" minlength="8" class="ebook-input mt-1.5 w-full rounded-lg px-4 py-2.5 text-sm">
+                <input id="whatsapp" name="whatsapp" type="tel" required inputmode="numeric" autocomplete="tel" maxlength="15" pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}" title="Digite o DDD e o número, por exemplo (27) 99870-1304" placeholder="DDD+WhatsApp" class="ebook-input mt-1.5 w-full rounded-lg px-4 py-2.5 text-sm">
               </div>
               <div>
                 <label for="cargoConcurso" class="block text-sm font-medium text-white/80">Cargo/concurso pretendido *</label>
@@ -1219,16 +1299,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <label for="disponibilidade" class="block text-sm font-medium text-white/80">Disponibilidade de estudo (opcional)</label>
               <input id="disponibilidade" name="disponibilidade" type="text" placeholder="Ex.: 3 horas por dia, de segunda a sexta" class="ebook-input mt-1.5 w-full rounded-lg px-4 py-2.5 text-sm">
             </div>
-            <div>
-              <label for="mensagem" class="block text-sm font-medium text-white/80">Mensagem (opcional)</label>
-              <textarea id="mensagem" name="mensagem" rows="4" class="ebook-input mt-1.5 w-full rounded-lg px-4 py-2.5 text-sm"></textarea>
-            </div>
 
             <p id="form-error" role="alert" class="hidden text-sm text-brand-rose">Não foi possível enviar sua mensagem. Tente novamente em instantes.</p>
 
-            <button type="submit" id="form-submit-btn" class="btn-ripple inline-flex w-full items-center justify-center rounded-full bg-gradient-cta px-6 py-3 text-base font-semibold text-white shadow-cardHover transition-[background-color,transform] duration-300 disabled:opacity-60 sm:w-auto">
-              Quero falar com o Fabrício
-            </button>
+            <div>
+              <button type="submit" id="form-submit-btn" class="btn-ripple inline-flex w-full items-center justify-center rounded-full bg-gradient-cta px-6 py-3 text-base font-semibold text-white shadow-cardHover transition-[background-color,transform] duration-300 disabled:opacity-60 sm:w-auto">
+                Quero meu plano de estudos
+              </button>
+              <p class="mt-2.5 text-center text-[0.7rem] leading-relaxed text-white/40 sm:text-left">Envie o formulário e eu entro em contato <span class="whitespace-nowrap">pelo WhatsApp.</span></p>
+            </div>
           </div>
         </form>
       </div>
@@ -1242,7 +1321,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="bg-brand-navyDark text-white/80">
   <div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-14 sm:grid-cols-3 sm:px-6 lg:px-8">
     <div>
-      <img src="assets/logo com a ls.png" alt="Fabrício Concursos, mentoria de estudos para concursos fiscais e de controle" class="h-auto w-full max-w-xs">
+      <picture class="block max-w-xs">
+        <source srcset="assets/logo-com-ls.webp" type="image/webp">
+        <img src="assets/logo com a ls.png" width="913" height="114" loading="lazy" decoding="async" alt="Fabrício Concursos, mentoria de estudos para concursos fiscais e de controle" class="h-auto w-full">
+      </picture>
       <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/60">Mentoria de estudos para concursos fiscais, de controle, tribunais, policiais, administrativos e bancários. Atendimento 100% online, disponível 24 horas por dia, 7 dias por semana.</p>
       <div class="mt-5 flex items-center gap-3">
         <a href="#" class="wa-link flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-brand-magenta" aria-label="Falar com o Fabrício Concursos no WhatsApp" target="_blank" rel="noopener noreferrer">
@@ -1299,7 +1381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <!-- ===================== WHATSAPP FLUTUANTE ===================== -->
-<a href="#" class="wa-link fixed bottom-6 right-6 z-50 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_16px_40px_-20px_rgba(37,211,102,0.65)] transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#1ebe5a]" aria-label="Falar com o Fabrício Concursos no WhatsApp" target="_blank" rel="noopener noreferrer">
+<a href="#" class="wa-link wa-float fixed right-4 z-50 flex h-14 w-14 sm:right-6 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_16px_40px_-20px_rgba(37,211,102,0.65)] transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#1ebe5a]" aria-label="Falar com o Fabrício Concursos no WhatsApp" target="_blank" rel="noopener noreferrer">
   <svg class="h-6 w-6 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Z"></path><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.815.487 3.517 1.336 4.983L2 22l5.24-1.436a9.86 9.86 0 0 0 4.8 1.223h.005c5.46 0 9.905-4.45 9.905-9.91C21.95 6.42 17.5 2 12.04 2Zm0 17.86h-.004a8.24 8.24 0 0 1-4.202-1.15l-.301-.179-3.111.852.831-3.037-.196-.312a8.216 8.216 0 0 1-1.263-4.373c0-4.55 3.703-8.253 8.25-8.253 2.204 0 4.276.86 5.834 2.42a8.194 8.194 0 0 1 2.417 5.838c0 4.55-3.704 8.194-8.255 8.194Z"></path></svg>
   <span class="sr-only">WhatsApp</span>
 </a>
@@ -1380,9 +1462,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     el.addEventListener("click", closeMenu);
   });
 
-  // Grade de servicos: ao passar o mouse em um card, os demais desfocam
+  // Mural de depoimentos: pausar/retomar (o hover do desktop nao existe no toque)
+  var testiPauseBtn = document.getElementById("testi-pause");
+  var testiWall = document.getElementById("testi-wall");
+  if (testiPauseBtn && testiWall) {
+    var testiPauseLabel = document.getElementById("testi-pause-label");
+    testiPauseBtn.addEventListener("click", function () {
+      var paused = testiWall.classList.toggle("is-paused");
+      testiPauseBtn.setAttribute("aria-pressed", paused ? "true" : "false");
+      testiPauseLabel.textContent = paused ? "Retomar depoimentos" : "Pausar depoimentos";
+    });
+  }
+
+  // Grade de servicos: ao passar o mouse em um card, os demais desfocam.
+  // No toque o mouseenter dispara no tap e o desfoque fica preso, entao o
+  // efeito so e ligado onde existe mouse de verdade.
   var servicosTrackEl = document.getElementById("servicos-track");
-  if (servicosTrackEl) {
+  if (servicosTrackEl && window.matchMedia("(hover: hover)").matches) {
     servicosTrackEl.querySelectorAll(".servicos-card").forEach(function (card) {
       card.addEventListener("mouseenter", function () {
         servicosTrackEl.classList.add("group-hovering");
@@ -1461,6 +1557,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 
+  // Campo de WhatsApp: mascara (27) 99870-1304, mesma da pagina de e-book
+  var whatsappInput = document.getElementById("whatsapp");
+
+  function formatWhatsapp(digits) {
+    digits = digits.slice(0, 11);
+    if (!digits) return "";
+    if (digits.length <= 2) return "(" + digits;
+    if (digits.length <= 6) return "(" + digits.slice(0, 2) + ") " + digits.slice(2);
+    if (digits.length <= 10) return "(" + digits.slice(0, 2) + ") " + digits.slice(2, 6) + "-" + digits.slice(6);
+    return "(" + digits.slice(0, 2) + ") " + digits.slice(2, 7) + "-" + digits.slice(7);
+  }
+
+  function applyWhatsappMask() {
+    var caretFromEnd = whatsappInput.value.length - (whatsappInput.selectionEnd || 0);
+    whatsappInput.value = formatWhatsapp(whatsappInput.value.replace(/[^0-9]/g, ""));
+    var caret = Math.max(0, whatsappInput.value.length - caretFromEnd);
+    try { whatsappInput.setSelectionRange(caret, caret); } catch (error) {}
+  }
+
+  // Antes de apagar, pula os separadores para o backspace sempre remover um digito.
+  whatsappInput.addEventListener("keydown", function (event) {
+    if (event.key !== "Backspace") return;
+    if (whatsappInput.selectionStart !== whatsappInput.selectionEnd) return;
+    var pos = whatsappInput.selectionStart;
+    while (pos > 0 && !/[0-9]/.test(whatsappInput.value.charAt(pos - 1))) pos--;
+    if (pos !== whatsappInput.selectionStart) whatsappInput.setSelectionRange(pos, pos);
+  });
+
+  whatsappInput.addEventListener("input", applyWhatsappMask);
+  whatsappInput.addEventListener("paste", function () { setTimeout(applyWhatsappMask, 0); });
+
   // Formulario de contato (envio via webhook do n8n, sem recarregar a pagina)
   var contatoForm = document.getElementById("contato-form");
   contatoForm.addEventListener("submit", function (event) {
@@ -1488,7 +1615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .catch(function () {
         errorMsg.classList.remove("hidden");
         submitBtn.disabled = false;
-        submitBtn.textContent = "Quero falar com o Fabrício";
+        submitBtn.textContent = "Quero meu plano de estudos";
       });
   });
 </script>

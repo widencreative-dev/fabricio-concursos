@@ -14,12 +14,25 @@ assets/
   logo com a ls.png               Logotipo em parceria com a LS Concursos
   foto-fabricio-.png              Foto usada na seção "Quem orienta"
   ebook-capa-sefaz-es.png         Capa do guia estratégico (landing do e-book)
+  *.webp                          Versões leves dos PNGs acima, servidas por
+                                  <picture>; os PNGs ficam como reserva
   styles.css                      Estilos próprios, fora do Tailwind
   tailwind-config.js              Paleta e fontes da marca
   fabricio-hero.jpg               Foto do hero, master 2880x1620 (desktop 2x)
   fabricio-hero-1440.jpg          Hero desktop 1x
   fabricio-hero-mobile.jpg        Hero mobile, recorte 4:5 (2x)
   fabricio-hero-mobile-648.jpg    Hero mobile 1x
+```
+
+Os `.webp` foram gerados a partir dos PNGs com o ffmpeg e são o que o
+navegador realmente baixa (o PNG só é usado por navegador sem suporte a
+WebP). Para regerar depois de trocar uma arte, rode a partir desta pasta:
+
+```bash
+ffmpeg -i "assets/foto-fabricio-.png"      -vf scale=720:-1 -c:v libwebp -q:v 82 assets/foto-fabricio.webp
+ffmpeg -i "assets/logo.png"                -vf scale=364:-1 -c:v libwebp -q:v 88 assets/logo.webp
+ffmpeg -i "assets/logo com a ls.png"       -vf scale=457:-1 -c:v libwebp -q:v 88 assets/logo-com-ls.webp
+ffmpeg -i "assets/ebook-capa-sefaz-es.png" -vf scale=840:-1 -c:v libwebp -q:v 74 assets/ebook-capa-sefaz-es.webp
 ```
 
 ## Como rodar localmente
@@ -99,6 +112,33 @@ configuração de servidor: Vercel, Netlify, GitHub Pages, Cloudflare Pages ou
 qualquer hospedagem compartilhada tradicional. Basta enviar o `index.html`
 e a pasta `assets/`.
 
+## Versão mobile
+
+O site é feito "mobile first" no sentido prático: o layout do celular tem
+decisões próprias, não é só o desktop espremido.
+
+- **Hero.** No desktop a foto é fundo de tela cheia com selos de vidro
+  flutuando sobre ela. No celular isso não cabe, então a foto vem logo
+  abaixo do texto, de ponta a ponta, com um degradê que funde o roxo do
+  estúdio no fundo escuro da seção, os mesmos selos de vidro sobrepostos e
+  uma faixa com os números de prova social. O título usa `clamp()` para
+  acompanhar a largura da tela.
+- **Botões.** O rótulo do CTA pode quebrar em duas linhas no celular
+  (`.flow-text` perde o `white-space: nowrap` abaixo de 640px) e as setas
+  animadas somem, porque a animação que as desliza depende de hover.
+- **Hover no toque.** Todo estado de hover está atrás de `@media (hover:
+  hover)`, inclusive os utilitários `hover:` do Tailwind (flag
+  `hoverOnlyWhenSupported` em `tailwind-config.js`). Sem isso, no celular o
+  card tocado fica preso no estado de hover.
+- **Abas do FAQ.** Viram uma tira que rola na horizontal com encaixe, em vez
+  de cinco pílulas empilhadas ocupando meia tela. A tabela comparativa rola
+  do mesmo jeito e avisa disso.
+- **Mural de depoimentos.** No celular roda bem mais devagar (uma coluna só)
+  e tem botão de pausar, já que não existe hover para pausar no toque.
+- **Texto.** O alinhamento justificado só vale do breakpoint `md` para
+  cima: em coluna estreita ele abre buracos entre as palavras. Campos de
+  formulário usam 16px para o iOS não dar zoom ao focar.
+
 ## Acessibilidade e performance
 
 - Scroll suave (Lenis), rolagem do mural de depoimentos e flutuação dos
@@ -109,3 +149,6 @@ e a pasta `assets/`.
 - Menu mobile, acordeão de perguntas frequentes e pausa do mural de
   depoimentos são operáveis via teclado e usam atributos ARIA
   (`aria-expanded`, `aria-pressed`, `aria-label`).
+- As imagens pesadas são servidas em WebP por `<picture>`, com `width` e
+  `height` declarados para a página não pular enquanto carrega, e as que
+  ficam abaixo da dobra usam `loading="lazy"`.
