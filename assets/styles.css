@@ -67,9 +67,14 @@ body { background: #fff; color: #0F1024; overflow-x: clip; -webkit-font-smoothin
 /* Estados de hover concentrados aqui e limitados a dispositivos com mouse:
    no toque o :hover fica grudado depois do tap e o botao trava no estado
    animado ate o usuario tocar em outro lugar da tela. */
+/* Os botoes tem overflow: hidden por causa do circulo do ripple, entao nao da
+   para ampliar a area de hover com um pseudo-elemento como no .nav-link. Aqui
+   o hover cresce o botao em vez de subi-lo: uma caixa que so aumenta nunca
+   escapa de baixo do ponteiro, e o efeito de elevacao fica por conta da
+   sombra, que ja aumenta junto. */
 @media (hover: hover) {
   .btn-ripple:hover::before { transform: translate(-50%,-50%) scale(2.5); }
-  .btn-ripple:hover { transform: translateY(-3px); }
+  .btn-ripple:hover { transform: scale(1.02); }
   .flow-btn:hover { border-radius: 12px; }
   .flow-btn:hover .flow-arrow.arrow-left { left: 1rem; }
   .flow-btn:hover .flow-arrow.arrow-right { right: -25%; }
@@ -79,8 +84,8 @@ body { background: #fff; color: #0F1024; overflow-x: clip; -webkit-font-smoothin
   .flow-btn.flow-dark:hover .flow-arrow { stroke: #fff; }
   .flow-btn.flow-light:hover { border-color: transparent; color: #1A0448; }
   .flow-btn.flow-light:hover .flow-arrow { stroke: #1A0448; }
-  .flow-btn.flow-gradient:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -6px rgba(139,31,224,.65); }
-  .flow-btn.flow-green:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -6px rgba(36,204,99,.6); }
+  .flow-btn.flow-gradient:hover { transform: scale(1.02); box-shadow: 0 16px 34px -6px rgba(139,31,224,.65); }
+  .flow-btn.flow-green:hover { transform: scale(1.02); box-shadow: 0 16px 34px -6px rgba(36,204,99,.6); }
   .testi-col:hover .testi-track { animation-play-state: paused; }
   #servicos-track.group-hovering .servicos-card:not(.is-hovered) { filter: blur(3px); opacity: 0.6; }
 }
@@ -173,8 +178,13 @@ body { background: #fff; color: #0F1024; overflow-x: clip; -webkit-font-smoothin
 }
 .scroll-hint { animation: scrollHintFall 2.4s ease-in-out infinite; }
 
-/* Menu de navegacao: texto da um leve salto ao passar o mouse */
-.nav-link { display: inline-block; transition: transform 0.25s cubic-bezier(.34,1.56,.64,1); }
+/* Menu de navegacao: texto da um leve salto ao passar o mouse.
+   O ::after cria uma area sensivel ao mouse maior que o texto. Sem ela, o
+   salto de 3px tira o link de baixo do ponteiro quando ele esta na borda
+   inferior: o hover cai, o link volta ao lugar, o hover volta, e o menu fica
+   piscando. Como o ::after sobe junto, a folga de 10px sempre cobre o salto. */
+.nav-link { position: relative; display: inline-block; transition: transform 0.25s cubic-bezier(.34,1.56,.64,1); }
+.nav-link::after { content: ""; position: absolute; inset: -10px -6px; }
 @media (hover: hover) { .nav-link:hover { transform: translateY(-3px); } }
 
 /* Quem pede menos movimento no sistema nao ve as animacoes decorativas. A
